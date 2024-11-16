@@ -20,16 +20,16 @@ const UserInfoIntro = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <motion.p 
+            <motion.p
               className="text-center text-sm text-muted-foreground"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              Thank you for starting this journey with us! To provide you with the
-              best experience, we'll kindly ask for some basic information about
-              you. Don't worry—your details are safe with us, and we'll only ask
-              what's necessary. Let's get started!
+              Thank you for starting this journey with us! To provide you with
+              the best experience, we'll kindly ask for some basic information
+              about you. Don't worry—your details are safe with us, and we'll
+              only ask what's necessary. Let's get started!
             </motion.p>
           </CardContent>
         </motion.div>

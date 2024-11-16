@@ -4,10 +4,11 @@ import FixedIncome from "./FixedExpense";
 import MonthlyIncome from "./MonthlyIncome";
 import UserInfoIntro from "./UserInfoIntro";
 import NonEssentialExp from "./NonEssentialExp";
+import PredictSavings from "../predictions/PredictSavings";
 
 const MultiStepForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   const nextStep = () => {
     if (currentStep < totalSteps) setCurrentStep((prev) => prev + 1);
@@ -22,7 +23,7 @@ const MultiStepForm = () => {
       <div className="flex flex-col">
         {/* Progress Bar */}
         <div className="mb-6 flex justify-between px-2">
-          {[1, 2, 3, 4].map((step) => (
+          {[1, 2, 3, 4, 5].map((step) => (
             <motion.div
               key={step}
               initial={false}
@@ -50,6 +51,7 @@ const MultiStepForm = () => {
               {currentStep === 2 && <MonthlyIncome />}
               {currentStep === 3 && <FixedIncome />}
               {currentStep === 4 && <NonEssentialExp />}
+              {currentStep === 5 && <PredictSavings />}
             </motion.div>
           </AnimatePresence>
         </div>

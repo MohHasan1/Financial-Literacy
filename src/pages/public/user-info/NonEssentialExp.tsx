@@ -17,9 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 
 const NonEssentialExp = () => {
-  const nonEssentialExpenses = useStore((state) => state.nonEssentialExpenses);
-  const fixedExpenses = useStore((state) => state.fixedExpenses);
-  const monthIncome = useStore((state) => state.monthlyIncome);
+
 
   const setNonEssentialExpenses = useStore(
     (state) => state.setNonEssentialExpenses
@@ -28,7 +26,6 @@ const NonEssentialExp = () => {
   function onSubmit(values: NumInputType) {
     logInfo(values);
     setNonEssentialExpenses(values.userInput);
-    logInfo(monthIncome, fixedExpenses, nonEssentialExpenses);
   }
 
   const form = useForm<NumInputType>({
