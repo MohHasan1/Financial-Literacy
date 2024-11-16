@@ -15,17 +15,30 @@ import useStore from "@/store/store";
 import { logInfo } from "@/utils/log";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
+// Import Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NonEssentialExp = () => {
-
-
   const setNonEssentialExpenses = useStore(
     (state) => state.setNonEssentialExpenses
   );
 
+  // Handle form submission
   function onSubmit(values: NumInputType) {
     logInfo(values);
     setNonEssentialExpenses(values.userInput);
+
+    // Show success toast notification
+    toast.success("Non-essential expenses saved successfully!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+    });
+    
   }
 
   const form = useForm<NumInputType>({
@@ -46,7 +59,7 @@ const NonEssentialExp = () => {
           <CardTitle className="text-center text-2xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
             Non-Essential Expenses
           </CardTitle>
-          <motion.p 
+          <motion.p
             className="text-sm text-muted-foreground text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -57,8 +70,8 @@ const NonEssentialExp = () => {
         </CardHeader>
         <CardContent>
           <FormProvider {...form}>
-            <motion.form 
-              onSubmit={form.handleSubmit(onSubmit)} 
+            <motion.form
+              onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -92,7 +105,10 @@ const NonEssentialExp = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+                <Button
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                >
                   Submit
                 </Button>
               </motion.div>

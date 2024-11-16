@@ -14,6 +14,9 @@ import useStore from "@/store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import { motion } from "framer-motion";
+// Import Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MonthlyIncome = () => {
   const setMonthlyIncome = useStore((state) => state.setMonthlyIncome);
@@ -24,9 +27,20 @@ const MonthlyIncome = () => {
     },
   });
 
+  // Handle form submission
   function onSubmit(values: NumInputType) {
     setMonthlyIncome(values.userInput);
-    // Store value but don't navigate - let either button handle navigation
+
+    // Show success toast notification
+    toast.success("Monthly income saved successfully!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+    });
+
   }
 
   return (
@@ -47,8 +61,8 @@ const MonthlyIncome = () => {
         </CardHeader>
         <CardContent>
           <FormProvider {...form}>
-            <form 
-              onSubmit={form.handleSubmit(onSubmit)} 
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6"
               onChange={() => {
                 // Auto-submit the form whenever the input changes
@@ -63,7 +77,9 @@ const MonthlyIncome = () => {
                 name="userInput"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-200">Monthly Income</FormLabel>
+                    <FormLabel className="text-gray-200">
+                      Monthly Income
+                    </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter amount"
@@ -86,8 +102,8 @@ const MonthlyIncome = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-lg h-12"
                 >
                   Submit

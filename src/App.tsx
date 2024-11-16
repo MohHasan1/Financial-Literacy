@@ -4,6 +4,7 @@ import router from "./router";
 import checkFirebaseEnvVar from "./lib/firebase/firebase-env-validation";
 import checkClerkEnvVar from "./lib/clerk/clerk-env-validation";
 import Clerk_Provider from "./lib/clerk/clerk-provider";
+import { ToastContainer } from "react-toastify";
 
 // Ensure environment variables are valid
 checkFirebaseEnvVar();
@@ -15,6 +16,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <Clerk_Provider>
           <RouterProvider router={router} />
+          <ToastContainer />
         </Clerk_Provider>
       </ThemeProvider>
     </>

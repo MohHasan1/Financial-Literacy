@@ -72,14 +72,6 @@ const PredictSavings = () => {
     }
   };
 
-  // Generate chart data if result exists
-  const chartData = result
-    ? [
-        { year: new Date().getFullYear(), amount: savings },
-        { year: result.year, amount: result.total_amount },
-      ]
-    : [];
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
