@@ -16,6 +16,8 @@ import ErrorElementPage from "./pages/errors/ErrorElementPage";
 import SignInPage from "./pages/public/_auth/SignInPage";
 import SignUpPage from "./pages/public/_auth/SignUpPage";
 import HomePage from "./pages/private/HomePage";
+import UserInfo from "./pages/public/user-info/UserInfo";
+
 
 const router = createBrowserRouter([
   // public routes //
@@ -25,6 +27,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorElementPage />,
     children: [
       { path: "/", element: <LandingPage /> },
+      { path: "/user-info", element: <UserInfo /> },
+
+
       { path: "/about-us", element: <AboutUsPage /> },
       { path: "/sign-in/*", element: <SignInPage /> },
       { path: "/sign-up/*", element: <SignUpPage /> },
