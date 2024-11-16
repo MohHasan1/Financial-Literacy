@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+
 const PredictSavings = () => {
   const [year, setYear] = useState<number | string>("");
   const [result, setResult] = useState<any>(null);
@@ -72,10 +73,12 @@ const PredictSavings = () => {
   };
 
   // Generate chart data if result exists
-  const chartData = result ? [
-    { year: new Date().getFullYear(), amount: savings },
-    { year: result.year, amount: result.total_amount }
-  ] : [];
+  const chartData = result
+    ? [
+        { year: new Date().getFullYear(), amount: savings },
+        { year: result.year, amount: result.total_amount },
+      ]
+    : [];
 
   return (
     <motion.div
@@ -96,8 +99,12 @@ const PredictSavings = () => {
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
           >
-            <h3 className="text-lg text-gray-300 mb-2">Current Monthly Savings</h3>
-            <p className="text-3xl font-bold text-blue-400">${savings.toFixed(2)}</p>
+            <h3 className="text-lg text-gray-300 mb-2">
+              Current Monthly Savings
+            </h3>
+            <p className="text-3xl font-bold text-blue-400">
+              ${savings.toFixed(2)}
+            </p>
           </motion.div>
 
           {/* Year Input Section */}
@@ -155,7 +162,9 @@ const PredictSavings = () => {
                 className="space-y-6"
               >
                 <div className="bg-[#2a3447] p-6 rounded-lg space-y-4">
-                  <h3 className="text-xl font-semibold text-blue-400">Prediction Results</h3>
+                  <h3 className="text-xl font-semibold text-blue-400">
+                    Prediction Results
+                  </h3>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-400">Target Year</p>
@@ -163,7 +172,9 @@ const PredictSavings = () => {
                     </div>
                     <div>
                       <p className="text-gray-400">Interest Rate</p>
-                      <p className="text-xl font-semibold">{result.predicted_interest_rate}%</p>
+                      <p className="text-xl font-semibold">
+                        {result.predicted_interest_rate}%
+                      </p>
                     </div>
                     <div className="col-span-2">
                       <p className="text-gray-400">Projected Savings</p>
@@ -172,28 +183,6 @@ const PredictSavings = () => {
                       </p>
                     </div>
                   </div>
-                </div>
-
-                {/* Chart */}
-                <div className="h-[300px] bg-[#2a3447] p-6 rounded-lg">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={chartData}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="year" stroke="#9CA3AF" />
-                      <YAxis stroke="#9CA3AF" />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1F2937', border: 'none' }}
-                        labelStyle={{ color: '#9CA3AF' }}
-                      />
-                      <Line 
-                        type="monotone" 
-                        dataKey="amount" 
-                        stroke="#60A5FA" 
-                        strokeWidth={2}
-                        dot={{ fill: '#60A5FA' }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
                 </div>
               </motion.div>
             )}
